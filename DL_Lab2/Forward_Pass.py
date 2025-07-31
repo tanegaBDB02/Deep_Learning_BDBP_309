@@ -75,11 +75,11 @@ from math import exp
 
 def user_input():
     x=[]
-    print("How many inputs do you want?")
+    print("How many input features do you want?")
     n = int(input())
     for i in range(n):
-        elem = float(input(f"Enter element {i+1}:"))
-        x.append(elem)
+        inp=float(input(f"Enter input value {i+1}:"))
+        x.append(inp)
     x=np.array(x).reshape(1,-1)
     print("X vector:\n", x)
 
@@ -106,18 +106,29 @@ def generate_weights(input_size,output_size):
 
     return W
 
+def bias_input(layer,length):
+    bias=[]
+    for i in range(length):
+        print(f"Enter the bias for neuron [{i+1}] in {layer}")
+        b=float(int(input()))
+        bias.append(b)
+
+    return np.array(bias).reshape(1,-1)
+
 def forward_pass(x,layer_size):
     input_data=x
-    idx=0
+    index=0
     for neurons in layer_size:
         W=generate_weights(input_data.shape[1],neurons)
-        z=np.dot(input_data,W)
+        b = bias_input(f"Hidden Layer {index+1}",neurons)
+        z=np.dot(input_data,W)+b
         a=Relu_function(z)
-        print(f"After Layer {idx+1} ReLU Activation:\n",a)
+        print(f"Output after ReLu Activation- Hidden Layer {index+1}:\n",a)
         input_data=a
+        index=index+1
     return input_data
 
-def output_layer(x, output_neurons):
+def output_layer(x,output_neurons):
     W=generate_weights(x.shape[1],output_neurons)
     z=np.dot(x,W)
     z_flat=z.flatten()
