@@ -1,3 +1,9 @@
+# Develop a model to predict target genes from a set of landmark genes - https://academic.oup.com/bioinformatics/article/32/12/1832/1743989 https://sites.google.com/view/cs502project/deep-learning-for-biology-a-tutorial/biological-data-in-deep-learning .
+# Refer to the appropriate section and the paper cited in this article. Look at the paper and download the dataset used in the paper.
+# Implement a deep network model and see how your result compares with the one presented in the paper.
+# Explore different ways of encoding input data.
+# Tune hyperparameters for improved performance.
+
 import torch.optim as optim
 from torch import nn
 import numpy as np
